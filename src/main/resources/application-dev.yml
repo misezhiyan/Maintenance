@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+# 数据库配置
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/maintenance?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    #druid是spring默认的数据库连接池
+    #type: com.alibaba.druid.pool.DruidDataSource
+    #数据库驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 驼峰式命名数据库类
+mybatis:
+  #将_转化成驼峰命名
+  typeAliasesPackage: com.maicai.entity
+  mapperLocations: classpath:mybatis/mapper/*.xml
+  configuration:
+      #将_转化成驼峰命名
+      map-underscore-to-camel-case: true
+      
+
+# 配置JSP
+spring.mvc.view: 
+  prefix: /WEB-INF/jsp/
+  suffix: .jsp
