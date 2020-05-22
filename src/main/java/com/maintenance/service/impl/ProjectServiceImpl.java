@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maintenance.mapper.ProjectMapper;
+import com.maintenance.po.Project;
 import com.maintenance.service.ProjectService;
 
 @Service("projectService")
@@ -15,9 +16,16 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectMapper projectMapper;
 
 	@Override
-	public List<String> projectlist() {
+	public List<Project> projectlist() {
 
 		return projectMapper.projectlist();
+	}
+
+
+	@Override
+	public int addProject(Project project) {
+
+		return projectMapper.addProject(project);
 	}
 
 }

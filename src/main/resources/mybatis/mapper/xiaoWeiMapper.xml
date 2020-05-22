@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maintenance.mapper.XiaoWeiMapper">
+
+	<!-- 项目列表 -->
+	<select id="modellist" parameterType="java.lang.String" resultType="com.maintenance.po.Model">
+	select * from model where project_id = #{_parameter}
+	</select>
+
+	<!-- 新建项目 -->
+	<insert id="addModel" parameterType="com.maintenance.po.Model">
+	insert into model(project_id, model_name, model_path) values (#{projectId}, #{modelName}, #{modelPath})
+	</insert>
+
+
+</mapper>

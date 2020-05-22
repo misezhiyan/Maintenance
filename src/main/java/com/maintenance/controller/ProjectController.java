@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.maintenance.po.Test;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.maintenance.po.Project;
 import com.maintenance.service.ProjectService;
 
 @Controller
@@ -25,25 +28,56 @@ public class ProjectController {
 		return "hello";
 	}
 
-	/**
-	 * GET获取参数
-	 */
-	@RequestMapping("/test1")
-	public String test1(Test test) {
+	// /**
+	// * GET获取参数
+	// */
+	// @RequestMapping("/test1")
+	// public String test1(Test test) {
+	//
+	// System.out.println(test.getTest());
+	//
+	// return "hello";
+	// }
 
-		System.out.println(test.getTest());
+	@RequestMapping("/project")
+	public String project() {
 
-		return "hello";
+		return "project/project";
+	}
+
+	@RequestMapping("/projectlistpage")
+	public String projectlistpage() {
+
+		return "project/projectlist";
+	}
+
+	@RequestMapping("/addProject")
+	public String addProject(Project project) {
+
+		projectService.addProject(project);
+
+		return "project/projectlist";
 	}
 
 	@RequestMapping("/projectlist")
+	@ResponseBody
 	public String projectlist() {
 
-		List<String> list = projectService.projectlist();
-		for (String re : list) {
-			System.out.println(re);
+		JSONObject resultJson = new JSONObject();
+
+		JSONArray array = new JSONArray();
+
+		List<Project> list = projectService.projectlist();
+		for (Project re : list) {
+			System.out.println(re.getProjectName());
+			array.add(JSONObject.toJSON(re));
 		}
 
-		return "hello";
+		resultJson.put("code", "1");// 成功
+		resultJson.put("message", "成功");// 成功
+
+		resultJson.put("data", array.toJSONString());
+
+		return resultJson.toJSONString();
 	}
 }

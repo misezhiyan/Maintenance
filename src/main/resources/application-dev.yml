@@ -1,8 +1,10 @@
-server:
+server: 
   port: 8082
+  # 配置JSP变动后自动编译加载
+  servlet.jsp.init-parameters.development: true
 
-# 数据库配置
 spring:
+  # 数据库配置
   datasource:
     username: root
     password: root
@@ -11,6 +13,15 @@ spring:
     #type: com.alibaba.druid.pool.DruidDataSource
     #数据库驱动类
     driver-class-name: com.mysql.cj.jdbc.Driver
+  # 配置JSP
+  mvc.view: 
+    prefix: /WEB-INF/jsp/
+    suffix: .jsp
+  # 代码修改自动重启
+  devtools.restart: 
+    enabled: true #热加载生效
+    additional-paths: src/main/java #额外新增的热加载目录
+    #exclude:  #热加载排除目录
 
 # 驼峰式命名数据库类
 mybatis:
@@ -18,11 +29,6 @@ mybatis:
   typeAliasesPackage: com.maicai.entity
   mapperLocations: classpath:mybatis/mapper/*.xml
   configuration:
-      #将_转化成驼峰命名
-      map-underscore-to-camel-case: true
+    #将_转化成驼峰命名
+    map-underscore-to-camel-case: true
       
-
-# 配置JSP
-spring.mvc.view: 
-  prefix: /WEB-INF/jsp/
-  suffix: .jsp

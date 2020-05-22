@@ -10,4 +10,5 @@ public class MaintenanceApplication {
 
 		SpringApplication.run(MaintenanceApplication.class, args);
 	}
+
 }
