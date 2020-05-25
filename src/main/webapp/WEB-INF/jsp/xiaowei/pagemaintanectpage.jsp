@@ -11,42 +11,62 @@
 </head>
 
 <body>
-	<input id="projectId" type="text" value="${modelId }">
-	<input id="projectId" type="hidden" value="${modelId }">
+	<input id="modelId" type="hidden" value="${modelId }">
 	<div id="sidebar" style="float: left; background-color: #CCC; height: 100%; width: 20%">
-		<div>
-			<a href="#" onclick="addModelArea()">添加模块</a>
+		<div id="showArea">
+			<div>
+				<a href="#">页面列表</a>
+				<div id="pagelist"></div>
+			</div>
+			<div>
+				<a href="#">交易列表</a>
+				<div id="tradlist"></div>
+			</div>
 		</div>
-		<div>
-			<a href="#" onclick="modelListArea()">模块列表</a>
+
+		<div id="addArea" style="margin-top: 20px">
+			<div>
+				<a href="#" onclick="addPage()">添加页面</a>
+			</div>
+			<div>
+				<a href="#" onclick="addTrad()">添加交易</a>
+			</div>
 		</div>
 	</div>
 
-	<div id="operationBody" style="float: right; background-color: #0A4; height: 100%; width: 80%; padding-bottom: 15px">
-		<div id="modelListArea" style="display: none"></div>
-		<div id="addModelArea" style="display: none">
-			<div>
-				<table>
-					<thead>
-						<tr>
-							<th>模块名称</th>
-							<th>模块地址</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input name="modelName"></td>
-							<td><input name="modelPath"></td>
-						</tr>
-					</tbody>
-				</table>
-				<input type="button" value="添加" onclick="addModel()">
+	<div id="operationBody" style="float: right; background-color: #AA4; height: 100%; width: 80%; padding-bottom: 15px">
+		<div id="pageAddArea" name="addArea" style="display: none">
+			<div id='pageConfig' style="display: none">
+				<label>页面配置</label>
+				<br>
+				<label>页面类型</label>
+				<select name="pageType">
+					<option value='single'>单表页面</option>
+				</select>
+				<br>
+				<input type="button" value="确认页面配置" onclick="confirmPageConfig()">
+			</div>
+			<div id='pageOperation' style="display: none">
+				<div id="single" name="page" style="display: none">
+					<div>单表页面</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
+	function addPage() {
+		$('#operationBody').find('div[name=addArea]').hide();
+		$('#pageAddArea').show();
+		$('#pageConfig').show();
+	}
 
-
+	function confirmPageConfig() {
+		var pageType = $('#pageConfig').find('[name=pageType]').val();
+		$('#pageConfig').hide();
+		$('#pageOperation').show();
+		$('#pageOperation').find('[name=page]').hide();
+		$('#pageOperation').find('#' + pageType).show();
+	}
 </script>
 </html>

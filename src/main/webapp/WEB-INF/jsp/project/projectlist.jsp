@@ -59,29 +59,28 @@
 	}
 	function showProjectList() {
 		$.post(webRoot + "/project/projectlist", {}, function(data) {
-
-		var projListContent = "<div>";
+	
+			var projListContent = "<div>";
+				
+			var dataset = eval("("+data.data+")");
+			for(var i = 0; i<dataset.length;i++){
+				var proj = dataset[i];
+				var projId = proj.id;
+				var projectPath = proj.projectPath;
+				var projectName = proj.projectName;
+				
+				projListContent += "<div>";
+			/* projListContent += '<a href="' + webRoot + '/maintanence/pagelistpage?id='+projId+'" >'; */
+				projListContent += '<a href="' + webRoot + '/xiaowei/maintanencepage?id='+projId+'" >';
+				projListContent += projectName;
+				projListContent += '</a>';
+				projListContent += '</div>';
+			}
 			
-		var dataset = eval("("+data.data+")");
-		for(var i = 0; i<dataset.length;i++){
-			var proj = dataset[i];
-			var projId = proj.id;
-			var projectPath = proj.projectPath;
-			var projectName = proj.projectName;
+			projListContent += "</div>";
 			
-			projListContent += "<div>";
-/* 			projListContent += '<a href="' + webRoot + '/maintanence/pagelistpage?id='+projId+'" >'; */
-			projListContent += '<a href="' + webRoot + '/xiaowei/maintanencepage?id='+projId+'" >';
-			projListContent += projectName;
-			projListContent += '</a>';
-			projListContent += '</div>';
-		}
-		
-		projListContent += "</div>";
-		
-		$('#projectListArea').append($(projListContent));
-
-
+			$('#projectListArea').append($(projListContent));
+	
 		}, 'json')
 
 	}

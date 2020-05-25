@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.maintenance.mapper.XiaoWeiMapper;
 import com.maintenance.po.Model;
+import com.maintenance.po.Project;
 import com.maintenance.service.XiaoWeiService;
 
 @Service("xiaoWeiService")
@@ -25,6 +26,12 @@ public class XiaoWeiServiceImpl implements XiaoWeiService {
 	public int addModel(Model model) {
 
 		return xiaoWeiMapper.addModel(model);
+	}
+
+	@Override
+	public Project getProjectById(String projectId) {
+
+		return xiaoWeiMapper.getProjectById(projectId);
 	}
 
 }

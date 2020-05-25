@@ -4,13 +4,17 @@
 
 	<!-- 项目列表 -->
 	<select id="modellist" parameterType="java.lang.String" resultType="com.maintenance.po.Model">
-	select * from model where project_id = #{_parameter}
+		select * from model where project_id = #{_parameter}
 	</select>
 
 	<!-- 新建项目 -->
 	<insert id="addModel" parameterType="com.maintenance.po.Model">
-	insert into model(project_id, model_name, model_path) values (#{projectId}, #{modelName}, #{modelPath})
+		insert into model(project_id, model_name, model_path) values (#{projectId}, #{modelName}, #{modelPath})
 	</insert>
 
+	<!-- 新建项目 -->
+	<select id="getProjectById" parameterType="java.lang.String" resultType="com.maintenance.po.Project">
+		select * from project where id = ${projectId}
+	</select>
 
 </mapper>
