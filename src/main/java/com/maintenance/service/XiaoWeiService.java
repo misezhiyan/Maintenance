@@ -2,8 +2,8 @@ package com.maintenance.service;
 
 import java.util.List;
 
+import com.maintenance.po.Database;
 import com.maintenance.po.Model;
-import com.maintenance.po.Project;
 
 public interface XiaoWeiService {
 
@@ -11,6 +11,8 @@ public interface XiaoWeiService {
 
 	int addModel(Model model);
 
-	Project getProjectById(String projectId);
+	List<Database> dblist(String projectId);
+
+	Database dbById(String databaseId);
 
 }

@@ -1,3 +1,4 @@
+
 package com.maintenance.controller;
 
 import java.util.List;
@@ -79,5 +80,23 @@ public class ProjectController {
 		resultJson.put("data", array.toJSONString());
 
 		return resultJson.toJSONString();
+	}
+
+	@RequestMapping("/projectconfig")
+	@ResponseBody
+	public JSONObject projectconfig(String projectId) {
+
+		System.out.println(projectId);
+
+		JSONObject resJson = new JSONObject();
+
+		Project project = projectService.getProjectById(projectId);
+
+		resJson.put("code", "0");
+		resJson.put("message", "成功");
+		resJson.put("projectPath", project.getProjectPath());
+		resJson.put("projectName", project.getProjectName());
+
+		return resJson;
 	}
 }

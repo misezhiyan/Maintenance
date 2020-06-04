@@ -11,9 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.maintenance.po.Database;
 import com.maintenance.po.Model;
 import com.maintenance.po.Page;
-import com.maintenance.po.Project;
 import com.maintenance.service.XiaoWeiService;
 
 @Controller
@@ -87,22 +87,56 @@ public class XiaoWeiController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/projectconfig")
+	@RequestMapping("/singlepage")
+	public ModelAndView singlepage() {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.setViewName("xiaowei/singlepage");
+
+		return modelAndView;
+	}
+
+	@RequestMapping("/dblist")
 	@ResponseBody
-	public JSONObject projectconfig(String projectId) {
+	public JSONObject dblist(String projectId) {
 
-		System.out.println(projectId);
+		JSONObject resultJson = new JSONObject();
 
-		JSONObject resJson = new JSONObject();
+		List<Database> dblist = xiaoWeiService.dblist(projectId);
+		JSONArray array = new JSONArray();
+		for (Database db : dblist) {
+			array.add(JSONObject.toJSON(db));
+		}
 
-		Project project = xiaoWeiService.getProjectById(projectId);
+		resultJson.put("code", "1");
+		resultJson.put("message", "成功");
+		resultJson.put("dblist", array.toJSONString());
 
-		resJson.put("code", "0");
-		resJson.put("message", "成功");
-		resJson.put("projectPath", project.getProjectPath());
-		resJson.put("projectName", project.getProjectName());
+		return resultJson;
+	}
 
-		return resJson;
+	@RequestMapping("/tblist")
+	@ResponseBody
+	public JSONObject tblist(String databaseId) {
+
+		JSONObject resultJson = new JSONObject();
+
+		Database database = xiaoWeiService.dbById(databaseId);
+
+		String sql = "";
+		// JsonArray array = DbUtil.runQueryRows(sql, database);
+
+		// JSONArray array = new JSONArray();
+		// for (Database tb : tblist) {
+		// array.add(JSONObject.toJSON(tb));
+		// }
+		//
+		// resultJson.put("code", "1");
+		// resultJson.put("message", "成功");
+		// resultJson.put("dblist", array.toJSONString());
+
+		return resultJson;
 	}
 
 }

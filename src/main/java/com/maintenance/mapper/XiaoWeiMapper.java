@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.maintenance.po.Database;
 import com.maintenance.po.Model;
-import com.maintenance.po.Project;
 
 @Mapper
 public interface XiaoWeiMapper {
@@ -15,6 +15,8 @@ public interface XiaoWeiMapper {
 
 	int addModel(Model model);
 
-	Project getProjectById(@Param("projectId") String projectId);
+	List<Database> dblist(@Param("projectId") String projectId);
+
+	Database dbById(@Param("databaseId") String databaseId);
 
 }

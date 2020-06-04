@@ -1,0 +1,13 @@
+
+maven 安装本地jar包
+mvn install:install-file -DgroupId=db2 -DartifactId=db2-jcc -Dversion=1.0 -Dpackaging=jar -Dfile=F:\software\maven\expend\db2-jcc-1.0.jar
+mvn install:install-file -DgroupId=db2 -DartifactId=db2-jcc4 -Dversion=1.0 -Dpackaging=jar -Dfile=F:\software\maven\expend\db2-jcc4-1.0.jar
+
+
+//第一步,从Maven本地仓库删除jar
+//清除某个jar
+mvn dependency:purge-local-repository -DmanualInclude="groupId:artifactId"
+//清除多个属于不同groupId的jar
+mvn dependency:purge-local-repository -DmanualInclude="groupId1:artifactId1,groupId2:artifactId2,..."
+//第二步,阻止Maven对已删除的jar进行reResolve
+mvn dependency:purge-local-repository -DreResolve=false

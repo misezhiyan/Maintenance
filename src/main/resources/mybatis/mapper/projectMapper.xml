@@ -4,13 +4,17 @@
 
 	<!-- 项目列表 -->
 	<select id="projectlist" resultType="com.maintenance.po.Project">
-	select * from project
+		select * from project
 	</select>
 
 	<!-- 新建项目 -->
 	<insert id="addProject" parameterType="com.maintenance.po.Project">
-	insert into project(project_name, project_path) values (#{projectName}, #{projectPath})
+		insert into project(project_name, project_path) values (#{projectName}, #{projectPath})
 	</insert>
 
+	<!-- 项目信息 -->
+	<select id="getProjectById" parameterType="java.lang.String" resultType="com.maintenance.po.Project">
+		select * from project where id = ${projectId}
+	</select>
 
 </mapper>

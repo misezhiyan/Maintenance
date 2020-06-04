@@ -21,11 +21,15 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectMapper.projectlist();
 	}
 
-
 	@Override
 	public int addProject(Project project) {
 
 		return projectMapper.addProject(project);
 	}
 
+	@Override
+	public Project getProjectById(String projectId) {
+
+		return projectMapper.getProjectById(projectId);
+	}
 }

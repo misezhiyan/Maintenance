@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Maintenance</groupId>
 	<artifactId>Maintenance</artifactId>
@@ -71,5 +69,19 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
+ 
+		<!-- db2 START -->
+		<dependency>
+			<groupId>db2</groupId>
+			<artifactId>db2-jcc</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>db2</groupId>
+			<artifactId>db2-jcc4</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- db2 END -->
+
 	</dependencies>
 </project>

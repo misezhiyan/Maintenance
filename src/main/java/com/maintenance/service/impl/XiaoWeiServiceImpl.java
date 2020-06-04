@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.maintenance.mapper.XiaoWeiMapper;
+import com.maintenance.po.Database;
 import com.maintenance.po.Model;
-import com.maintenance.po.Project;
 import com.maintenance.service.XiaoWeiService;
 
 @Service("xiaoWeiService")
@@ -29,9 +29,15 @@ public class XiaoWeiServiceImpl implements XiaoWeiService {
 	}
 
 	@Override
-	public Project getProjectById(String projectId) {
+	public List<Database> dblist(String projectId) {
 
-		return xiaoWeiMapper.getProjectById(projectId);
+		return xiaoWeiMapper.dblist(projectId);
+	}
+
+	@Override
+	public Database dbById(String databaseId) {
+
+		return xiaoWeiMapper.dbById(databaseId);
 	}
 
 }

@@ -12,9 +12,14 @@
 		insert into model(project_id, model_name, model_path) values (#{projectId}, #{modelName}, #{modelPath})
 	</insert>
 
-	<!-- 新建项目 -->
-	<select id="getProjectById" parameterType="java.lang.String" resultType="com.maintenance.po.Project">
-		select * from project where id = ${projectId}
+	<!-- 项目列表 -->
+	<select id="dblist" parameterType="java.lang.String" resultType="com.maintenance.po.Database">
+		select * from `database` where project_id = #{projectId}
+	</select>
+
+	<!-- 项目列表 -->
+	<select id="dbById" parameterType="java.lang.String" resultType="com.maintenance.po.Database">
+		select * from `database` where id = ${databaseId}
 	</select>
 
 </mapper>

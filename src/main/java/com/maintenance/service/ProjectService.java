@@ -10,4 +10,6 @@ public interface ProjectService {
 
 	int addProject(Project project);
 
+	Project getProjectById(String projectId);
+
 }
